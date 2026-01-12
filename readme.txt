@@ -39,6 +39,9 @@ Advanced Image Editor is a powerful WordPress plugin that brings professional-gr
 * Corporate websites
 * Anyone who needs professional image editing in WordPress
 
+### Supporting Open Source
+When you purchase Advanced Image Editor Pro, 25% of all proceeds are donated to support the ImageMagick project—the powerful, free image processing library that makes professional image editing possible for millions of websites worldwide.
+
 == Installation ==
 
 1. Upload the `advanced-image-editor` folder to `/wp-content/plugins/`

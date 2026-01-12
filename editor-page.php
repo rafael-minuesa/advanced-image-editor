@@ -205,6 +205,16 @@
                  </a>
              </div>
 
+             <div class="aie-opensource-support" style="text-align: center; margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 8px;">
+                 <h4 style="margin: 0 0 8px 0; color: white; font-size: 16px;">
+                     <span class="dashicons dashicons-heart" aria-hidden="true"></span>
+                     <?php esc_html_e('Supporting Open Source', 'advanced-image-editor'); ?>
+                 </h4>
+                 <p style="margin: 0; font-size: 14px; line-height: 1.4;">
+                     <?php esc_html_e('When you purchase Advanced Image Editor Pro, 25% of proceeds are donated to support the ImageMagick project, helping sustain the free software that powers professional image processing worldwide.', 'advanced-image-editor'); ?>
+                 </p>
+             </div>
+
              <div class="aie-premium-disclaimer" style="margin-top: 15px; padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px; font-size: 13px; color: #856404;">
                  <strong><?php esc_html_e('Note:', 'advanced-image-editor'); ?></strong>
                  <?php esc_html_e('Premium features are available as a separate plugin. This free version includes all core editing functionality.', 'advanced-image-editor'); ?>
