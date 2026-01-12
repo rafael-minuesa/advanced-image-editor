@@ -1,6 +1,11 @@
 <?php
 /**
  * Utility functions for Advanced Image Editor
+ *
+ * @package AdvancedImageEditor
+ * @author Rafael Minuesa
+ * @license GPL-2.0+
+ * @link https://github.com/rafael-minuesa/advanced-image-editor
  */
 
 if (!defined('ABSPATH')) {

@@ -1,6 +1,11 @@
 <?php
 /**
  * Advanced Image Editor Page
+ *
+ * @package AdvancedImageEditor
+ * @author Rafael Minuesa
+ * @license GPL-2.0+
+ * @link https://github.com/rafael-minuesa/advanced-image-editor
  */
 ?>
 <div class="wrap">
@@ -116,22 +121,94 @@
             </div>
         </div>
         
-        <!-- Help Section -->
-        <div class="aie-section">
-            <h2><?php esc_html_e('How to Use', 'advanced-image-editor'); ?></h2>
-            <ol>
-                <li><?php esc_html_e('Click "Select Image" to choose an image from your media library', 'advanced-image-editor'); ?></li>
-                <li><?php esc_html_e('Adjust the sliders to apply filters in real-time', 'advanced-image-editor'); ?></li>
-                <li><?php esc_html_e('Click "Save Edited Image" to save a copy to your media library', 'advanced-image-editor'); ?></li>
-            </ol>
-            
-            <h3><?php esc_html_e('Filter Explanations', 'advanced-image-editor'); ?></h3>
-            <ul>
-                <li><strong><?php esc_html_e('Contrast:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Adjusts the difference between light and dark areas', 'advanced-image-editor'); ?></li>
-                <li><strong><?php esc_html_e('Sharpness Amount:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Controls the intensity of sharpening', 'advanced-image-editor'); ?></li>
-                <li><strong><?php esc_html_e('Sharpness Radius:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Determines how far the sharpening effect spreads', 'advanced-image-editor'); ?></li>
-                <li><strong><?php esc_html_e('Sharpness Threshold:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Sets the minimum contrast level for sharpening to apply', 'advanced-image-editor'); ?></li>
-            </ul>
-        </div>
+          <!-- Help Section -->
+         <div class="aie-section">
+             <h2><?php esc_html_e('How to Use', 'advanced-image-editor'); ?></h2>
+             <ol>
+                 <li><?php esc_html_e('Click "Select Image" to choose an image from your media library', 'advanced-image-editor'); ?></li>
+                 <li><?php esc_html_e('Adjust the sliders to apply filters in real-time', 'advanced-image-editor'); ?></li>
+                 <li><?php esc_html_e('Click "Save Edited Image" to save a copy to your media library', 'advanced-image-editor'); ?></li>
+             </ol>
+
+             <h3><?php esc_html_e('Filter Explanations', 'advanced-image-editor'); ?></h3>
+             <ul>
+                 <li><strong><?php esc_html_e('Contrast:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Adjusts the difference between light and dark areas', 'advanced-image-editor'); ?></li>
+                 <li><strong><?php esc_html_e('Sharpness Amount:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Controls the intensity of sharpening', 'advanced-image-editor'); ?></li>
+                 <li><strong><?php esc_html_e('Sharpness Radius:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Determines how far the sharpening effect spreads', 'advanced-image-editor'); ?></li>
+                 <li><strong><?php esc_html_e('Sharpness Threshold:', 'advanced-image-editor'); ?></strong> <?php esc_html_e('Sets the minimum contrast level for sharpening to apply', 'advanced-image-editor'); ?></li>
+             </ul>
+         </div>
+
+         <!-- Premium Features Section -->
+         <div class="aie-section aie-premium-section" style="border: 2px solid #007cba; background: #f8f9fa;">
+             <h2 style="color: #007cba;">
+                 <span class="dashicons dashicons-star-filled" aria-hidden="true"></span>
+                 <?php esc_html_e('Advanced Image Editor Pro', 'advanced-image-editor'); ?>
+             </h2>
+             <p><?php esc_html_e('Unlock professional-grade image editing features:', 'advanced-image-editor'); ?></p>
+
+             <div class="aie-premium-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-images-alt2" aria-hidden="true"></span>
+                         <?php esc_html_e('Batch Processing', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Process multiple images simultaneously. Apply filters to 10-100+ images at once with progress tracking.', 'advanced-image-editor'); ?></p>
+                 </div>
+
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-admin-appearance" aria-hidden="true"></span>
+                         <?php esc_html_e('Advanced Filters', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Sepia, vignette, duotone, curves, levels, and professional color correction tools.', 'advanced-image-editor'); ?></p>
+                 </div>
+
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-format-image" aria-hidden="true"></span>
+                         <?php esc_html_e('Watermarking', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Add text or image watermarks with custom positioning, fonts, and transparency.', 'advanced-image-editor'); ?></p>
+                 </div>
+
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-download" aria-hidden="true"></span>
+                         <?php esc_html_e('Bulk Export', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Export multiple images as ZIP with format conversion and size optimization.', 'advanced-image-editor'); ?></p>
+                 </div>
+
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-cloud" aria-hidden="true"></span>
+                         <?php esc_html_e('Cloud Processing', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Unlimited processing power for large images and complex operations.', 'advanced-image-editor'); ?></p>
+                 </div>
+
+                 <div class="aie-premium-feature" style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;">
+                     <h4 style="margin: 0 0 10px 0; color: #007cba;">
+                         <span class="dashicons dashicons-admin-tools" aria-hidden="true"></span>
+                         <?php esc_html_e('Filter Presets', 'advanced-image-editor'); ?>
+                     </h4>
+                     <p style="margin: 0; font-size: 14px;"><?php esc_html_e('Save and reuse filter combinations. Create custom presets for consistent editing.', 'advanced-image-editor'); ?></p>
+                 </div>
+             </div>
+
+             <div class="aie-premium-cta" style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #007cba 0%, #005a87 100%); color: white; border-radius: 8px;">
+                 <h3 style="margin: 0 0 10px 0; color: white;"><?php esc_html_e('Upgrade to Pro Today!', 'advanced-image-editor'); ?></h3>
+                 <p style="margin: 0 0 20px 0; font-size: 16px;"><?php esc_html_e('Get all premium features for just $49/year', 'advanced-image-editor'); ?></p>
+                 <a href="https://your-website.com/advanced-image-editor-pro" target="_blank" class="button button-primary button-hero" style="background: white; color: #007cba; border: none; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                     <?php esc_html_e('Learn More & Upgrade', 'advanced-image-editor'); ?>
+                 </a>
+             </div>
+
+             <div class="aie-premium-disclaimer" style="margin-top: 15px; padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px; font-size: 13px; color: #856404;">
+                 <strong><?php esc_html_e('Note:', 'advanced-image-editor'); ?></strong>
+                 <?php esc_html_e('Premium features are available as a separate plugin. This free version includes all core editing functionality.', 'advanced-image-editor'); ?>
+             </div>
+         </div>
     </div>
 </div>

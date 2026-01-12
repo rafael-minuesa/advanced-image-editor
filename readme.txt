@@ -1,0 +1,137 @@
+=== Advanced Image Editor ===
+
+Contributors: rafaelminuesa
+Tags: image, editor, filter, contrast, sharpen, media, photo, edit, wordpress
+Requires at least: 5.6
+Tested up to: 6.4
+Requires PHP: 7.4
+Stable tag: 2.1
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking for WordPress media library.
+
+== Description ==
+
+Advanced Image Editor is a powerful WordPress plugin that brings professional-grade image editing capabilities directly to your WordPress admin panel. Edit images from your media library with real-time preview, advanced filters, and seamless integration.
+
+**Core Features:**
+* **Real-time Preview**: See filter changes instantly as you adjust sliders
+* **Contrast Adjustment**: Professional contrast control with fine-tuned precision
+* **Unsharp Masking**: Advanced sharpening with full control over amount, radius, and threshold
+* **Accessibility**: Full keyboard navigation and screen reader support
+* **Security**: Rate limiting, input validation, and secure file handling
+* **Performance**: Optimized processing with memory management and dimension limits
+* **Responsive Design**: Works perfectly on all screen sizes
+* **WordPress Integration**: Seamless media library workflow
+
+**Professional Features:**
+* **Batch Processing**: Process multiple images simultaneously (Premium)
+* **Advanced Filters**: Blur, sepia, vignette, and more filters (Premium)
+* **Watermarking**: Add text and image watermarks (Premium)
+* **Bulk Export**: Export multiple edited images at once (Premium)
+* **Cloud Processing**: High-performance cloud-based processing (Premium)
+
+**Perfect for:**
+* Photographers and designers
+* Bloggers and content creators
+* E-commerce stores
+* Corporate websites
+* Anyone who needs professional image editing in WordPress
+
+== Installation ==
+
+1. Upload the `advanced-image-editor` folder to `/wp-content/plugins/`
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Go to Media → Advanced Image Editor to start editing
+
+== Frequently Asked Questions ==
+
+= How do I access the image editor? =
+
+Navigate to Media → Advanced Image Editor in your WordPress admin panel.
+
+= What image formats are supported? =
+
+The plugin supports all standard web image formats including JPEG, PNG, GIF, and WebP.
+
+= Is there a limit to image size? =
+
+By default, images up to 10MB and 4096x4096 pixels are supported for optimal performance.
+
+= Can I edit images that are already in my media library? =
+
+Yes! Select any image from your WordPress media library to edit.
+
+= Does this plugin create backups of original images? =
+
+The plugin saves edited versions as new files in your media library, preserving your originals.
+
+= Is the plugin accessible for users with disabilities? =
+
+Yes! The plugin includes full ARIA support, keyboard navigation, and screen reader compatibility.
+
+= Can I use this plugin on mobile devices? =
+
+Yes, the editor is fully responsive and works on tablets and mobile devices.
+
+== Screenshots ==
+
+1. **Main Editor Interface** - Clean, professional interface with real-time preview
+2. **Filter Controls** - Intuitive sliders for contrast and sharpening adjustments
+3. **Accessibility Features** - Full keyboard navigation and screen reader support
+4. **Media Library Integration** - Seamless workflow with WordPress media library
+
+== Changelog ==
+
+= 2.1 =
+* Complete plugin rename from "Advanced Image Filters" to "Advanced Image Editor"
+* Enhanced security with rate limiting, input validation, and capability checks
+* Improved accessibility with ARIA support and keyboard navigation
+* Performance optimizations with memory management and dimension limits
+* Better user interface with loading states and progress indicators
+* Comprehensive internationalization support
+* WordPress coding standards compliance
+
+= 2.0 =
+* Initial release with basic image editing functionality
+
+== Upgrade Notice ==
+
+= 2.1 =
+Major update with enhanced security, accessibility, and performance improvements. Upgrade recommended for all users.
+
+== Support ==
+
+For support, feature requests, or bug reports, please visit:
+* [GitHub Repository](https://github.com/rafael-minuesa/advanced-image-editor)
+* [WordPress Support Forums](https://wordpress.org/support/plugin/advanced-image-editor/)
+
+== Contributing ==
+
+Contributions are welcome! Please see our [contributing guidelines](https://github.com/rafael-minuesa/advanced-image-editor/blob/master/CONTRIBUTING.md) on GitHub.
+
+== Credits ==
+
+Developed by Rafael Minuesa
+* [GitHub](https://github.com/rafael-minuesa)
+* [Website](https://rafaelminuesa.com)
+
+Icons and assets used in accordance with their respective licenses.
+
+== License ==
+
+This plugin is licensed under the GPL v2 or later.
+
+    Advanced Image Editor is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    Advanced Image Editor is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Advanced Image Editor. If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.

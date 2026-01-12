@@ -1,11 +1,18 @@
 <?php
 /**
  * Plugin Name: Advanced Image Editor
- * Description: Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking.
+ * Plugin URI: https://github.com/rafael-minuesa/advanced-image-editor
+ * Description: Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking. Real-time preview, accessibility features, and seamless WordPress integration.
  * Version: 2.1
  * Author: Rafael Minuesa
+ * Author URI: https://github.com/rafael-minuesa
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: advanced-image-editor
  * Domain Path: /languages
+ * Requires at least: 5.6
+ * Tested up to: 6.4
+ * Requires PHP: 7.4
  */
 
 if (!defined('ABSPATH')) {

@@ -3,6 +3,11 @@
  * AJAX Handler class for Advanced Image Editor
  *
  * Handles all AJAX requests for image processing
+ *
+ * @package AdvancedImageEditor
+ * @author Rafael Minuesa
+ * @license GPL-2.0+
+ * @link https://github.com/rafael-minuesa/advanced-image-editor
  */
 
 if (!defined('ABSPATH')) {

@@ -3,6 +3,11 @@
  * Main Advanced Image Editor class
  *
  * Handles plugin initialization, assets, and core functionality
+ *
+ * @package AdvancedImageEditor
+ * @author Rafael Minuesa
+ * @license GPL-2.0+
+ * @link https://github.com/rafael-minuesa/advanced-image-editor
  */
 
 if (!defined('ABSPATH')) {
@@ -171,9 +176,74 @@ class Advanced_Image_Editor {
 
         // Check if Imagick is available
         if (!extension_loaded('imagick') && !class_exists('Imagick')) {
-            echo '<div class="notice notice-error"><p>';
-            echo __('<strong>Error:</strong> The Imagick PHP extension is required for this plugin to work. Please contact your hosting provider to enable it.', 'advanced-image-editor');
-            echo '</p></div>';
+            ?>
+            <div class="notice notice-error">
+                <p>
+                    <strong><?php esc_html_e('Missing Required Extension: Imagick', 'advanced-image-editor'); ?></strong>
+                </p>
+                <p>
+                    <?php esc_html_e('The Advanced Image Editor requires the Imagick PHP extension to function properly.', 'advanced-image-editor'); ?>
+                </p>
+
+                <div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #007cba; margin: 15px 0;">
+                    <h4 style="margin-top: 0; color: #007cba;">
+                        <?php esc_html_e('What is Imagick?', 'advanced-image-editor'); ?>
+                    </h4>
+                    <p style="margin-bottom: 10px;">
+                        <?php esc_html_e('Imagick is a powerful PHP extension that provides advanced image processing capabilities. It\'s based on the ImageMagick library, which has been a cornerstone of professional image manipulation since the early 1990s.', 'advanced-image-editor'); ?>
+                    </p>
+                    <ul style="margin-bottom: 10px;">
+                        <li><?php esc_html_e('Enables high-quality image editing and manipulation', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('Supports all major image formats (JPEG, PNG, GIF, WebP, TIFF, etc.)', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('Provides professional-grade filters and effects', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('Used by thousands of websites and professional applications worldwide', 'advanced-image-editor'); ?></li>
+                    </ul>
+                </div>
+
+                <div style="background: #fff3cd; padding: 15px; border-left: 4px solid #856404; margin: 15px 0;">
+                    <h4 style="margin-top: 0; color: #856404;">
+                        <?php esc_html_e('Why is it Required?', 'advanced-image-editor'); ?>
+                    </h4>
+                    <p style="margin-bottom: 0;">
+                        <?php esc_html_e('Without Imagick, the plugin cannot perform essential image operations like contrast adjustment, sharpening, format conversion, or any advanced image processing. This is a server-side requirement that must be enabled by your hosting provider.', 'advanced-image-editor'); ?>
+                    </p>
+                </div>
+
+                <div style="background: #d1ecf1; padding: 15px; border-left: 4px solid #17a2b8; margin: 15px 0;">
+                    <h4 style="margin-top: 0; color: #17a2b8;">
+                        <?php esc_html_e('How to Enable Imagick', 'advanced-image-editor'); ?>
+                    </h4>
+                    <ol style="margin-bottom: 10px;">
+                        <li><?php esc_html_e('Contact your web hosting provider', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('Request that they enable the Imagick PHP extension', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('Most hosting providers can enable this quickly (usually within hours)', 'advanced-image-editor'); ?></li>
+                        <li><?php esc_html_e('If using shared hosting, you may need to upgrade to a VPS or dedicated server', 'advanced-image-editor'); ?></li>
+                    </ol>
+                    <p style="margin-bottom: 0;">
+                        <em><?php esc_html_e('Note: Imagick is extremely common and should be available on most modern hosting platforms.', 'advanced-image-editor'); ?></em>
+                    </p>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 15px; border: 1px solid #dee2e6; margin: 15px 0; text-align: center;">
+                    <h4 style="margin-top: 0; color: #28a745;">
+                        <?php esc_html_e('Support Open Source Software', 'advanced-image-editor'); ?>
+                    </h4>
+                    <p style="margin-bottom: 10px;">
+                        <?php esc_html_e('ImageMagick is free, open-source software that powers millions of websites and applications worldwide. Consider supporting their important work:', 'advanced-image-editor'); ?>
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        <a href="https://imagemagick.org/support/#support" target="_blank" rel="noopener noreferrer" class="button button-primary">
+                            <?php esc_html_e('Sponsor ImageMagick Development', 'advanced-image-editor'); ?>
+                        </a>
+                    </p>
+                </div>
+
+                <p>
+                    <strong><?php esc_html_e('Need Help?', 'advanced-image-editor'); ?></strong>
+                    <?php esc_html_e('If you continue to have issues after enabling Imagick, please check our documentation or contact support.', 'advanced-image-editor'); ?>
+                </p>
+            </div>
+            <?php
             return;
         }
 
