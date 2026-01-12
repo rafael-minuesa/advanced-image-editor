@@ -1,0 +1,320 @@
+/* Advanced Image Editor Admin Styles */
+
+.aie-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.aie-section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #ccd0d4;
+}
+
+.aie-section h2 {
+    margin-top: 0;
+    color: #1d2327;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.aie-section h3 {
+    color: #2c3338;
+    margin-bottom: 15px;
+}
+
+/* Image Selection */
+#aie-select-image {
+    font-size: 14px;
+    padding: 12px 24px;
+    height: auto;
+}
+
+.aie-selected-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+    border-left: 4px solid #2271b1;
+}
+
+.aie-selected-info p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Controls */
+.aie-controls {
+    margin: 25px 0;
+}
+
+.aie-control-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.aie-control-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.aie-control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1d2327;
+    font-size: 14px;
+}
+
+.aie-control-group input[type="range"] {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    background: #f0f0f0;
+    border-radius: 3px;
+    outline: none;
+    margin: 10px 0;
+}
+
+.aie-control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2271b1;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.aie-control-group input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2271b1;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.aie-help-text {
+    color: #646970;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.aie-help-text small {
+    font-size: 12px;
+}
+
+/* Preview */
+.aie-preview-container {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px dashed #dcdcde;
+}
+
+#aie-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none; /* Hidden by default */
+}
+
+#aie-no-preview {
+    margin: 20px 0;
+}
+
+/* Buttons */
+.aie-button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.aie-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+}
+
+.aie-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.aie-button-success {
+    background: #00a32a;
+    color: white;
+}
+
+.aie-button-success:hover {
+    background: #008a20;
+}
+
+.aie-button-secondary {
+    background: #f0f0f0;
+    color: #3c434a;
+}
+
+.aie-button-secondary:hover {
+    background: #dcdcdc;
+}
+
+/* Loading Overlay */
+#aie-loading {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 25px 35px;
+    border-radius: 8px;
+    z-index: 99999;
+    font-size: 16px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    text-align: center;
+    max-width: 300px;
+}
+
+#aie-loading:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: aie-spin 1s ease-in-out infinite;
+    vertical-align: middle;
+}
+
+#aie-loading-progress {
+    margin-top: 15px;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+#aie-loading-progress-bar {
+    height: 100%;
+    background: #fff;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+    animation: aie-progress 2s ease-in-out infinite;
+}
+
+@keyframes aie-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes aie-progress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* Button loading states */
+.aie-button.loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.aie-button.loading:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: currentColor;
+    animation: aie-spin 1s linear infinite;
+}
+
+.aie-button.loading.aie-button-secondary:before {
+    border-top-color: #3c434a;
+}
+
+/* Preview loading state */
+#aie-preview.loading {
+    opacity: 0.5;
+    filter: blur(2px);
+    position: relative;
+}
+
+#aie-preview.loading:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #2271b1;
+    animation: aie-spin 1s linear infinite;
+}
+
+/* How to Use Section */
+.aie-section ol,
+.aie-section ul {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.aie-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .aie-container {
+        margin: 10px;
+        max-width: 100%;
+    }
+    
+    .aie-section {
+        padding: 15px;
+    }
+    
+    .aie-button-group {
+        flex-direction: column;
+    }
+    
+    .aie-button {
+        width: 100%;
+        text-align: center;
+    }
+}

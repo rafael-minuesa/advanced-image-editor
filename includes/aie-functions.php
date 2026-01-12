@@ -1,0 +1,49 @@
+<?php
+/**
+ * Utility functions for Advanced Image Editor
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Get MIME type from image format
+ *
+ * @param string $format Image format (from Imagick)
+ * @return string MIME type
+ */
+function aie_get_mime_type_from_format($format) {
+    $format = strtolower($format);
+
+    $mime_types = [
+        'jpeg' => 'image/jpeg',
+        'jpg' => 'image/jpeg',
+        'png' => 'image/png',
+        'gif' => 'image/gif',
+        'webp' => 'image/webp',
+        'tiff' => 'image/tiff',
+        'bmp' => 'image/bmp'
+    ];
+
+    return $mime_types[$format] ?? 'image/jpeg'; // Default to JPEG
+}
+
+/**
+ * Get file extension from MIME type
+ *
+ * @param string $mime_type MIME type
+ * @return string File extension
+ */
+function aie_get_extension_from_mime_type($mime_type) {
+    $extensions = [
+        'image/jpeg' => 'jpg',
+        'image/png' => 'png',
+        'image/gif' => 'gif',
+        'image/webp' => 'webp',
+        'image/tiff' => 'tiff',
+        'image/bmp' => 'bmp'
+    ];
+
+    return $extensions[$mime_type] ?? 'jpg'; // Default to JPG
+}
