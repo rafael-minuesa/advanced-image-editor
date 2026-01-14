@@ -39,7 +39,7 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        $nonce = isset($_POST['_ajax_nonce']) ? wp_unslash($_POST['_ajax_nonce']) : '';
+        $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
         if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
@@ -179,7 +179,7 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        $nonce = isset($_POST['_ajax_nonce']) ? wp_unslash($_POST['_ajax_nonce']) : '';
+        $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
         if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
@@ -196,6 +196,7 @@ class AIE_Ajax_Handler {
         $attachment_id = absint($_POST['image_id']);
         // Don't sanitize base64 data with sanitize_text_field - it will corrupt it
         // Instead, validate the base64 string format
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Base64 image data, validated below
         $image_data = isset($_POST['image_data']) ? wp_unslash($_POST['image_data']) : '';
 
         // Validate base64 format - accept any image MIME type
@@ -392,6 +393,7 @@ class AIE_Ajax_Handler {
             // WordPress 6.5+ has wp_log_error function
             wp_log_error($log_message);
         } elseif (defined('WP_DEBUG') && WP_DEBUG) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Only used in debug mode
             error_log($log_message);
         }
     }
@@ -415,7 +417,7 @@ class AIE_Ajax_Handler {
 
         foreach ($ip_headers as $header) {
             if (!empty($_SERVER[$header])) {
-                $ip = wp_unslash($_SERVER[$header] ?? '');
+                $ip = sanitize_text_field(wp_unslash($_SERVER[$header]));
                 // Handle comma-separated IPs (from proxies)
                 if (strpos($ip, ',') !== false) {
                     $ip = trim(explode(',', $ip)[0]);

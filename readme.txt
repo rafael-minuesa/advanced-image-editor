@@ -9,11 +9,13 @@ Stable tag: 2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking for WordPress media library.
+Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking for WordPress media library. Requires ImageMagick PHP extension.
 
 == Description ==
 
-Advanced Image Editor is a powerful WordPress plugin that brings professional-grade image editing capabilities directly to your WordPress admin panel. Edit images from your media library with real-time preview, advanced filters, and seamless integration.
+Advanced Image Editor is a powerful WordPress plugin that brings professional-grade image editing capabilities directly to your WordPress admin panel. **Requires the ImageMagick PHP extension** for superior image processing. Edit images from your media library with real-time preview, advanced filters, and seamless integration.
+
+**🚀 Powered by ImageMagick**: This plugin requires the ImageMagick PHP extension for image processing. Imagick is extremely common and should be available on most modern hosting platforms. Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
 **Core Features:**
 * **Real-time Preview**: See filter changes instantly as you adjust sliders
@@ -25,28 +27,25 @@ Advanced Image Editor is a powerful WordPress plugin that brings professional-gr
 * **Responsive Design**: Works perfectly on all screen sizes
 * **WordPress Integration**: Seamless media library workflow
 
-**Professional Features:**
-* **Batch Processing**: Process multiple images simultaneously (Premium)
-* **Advanced Filters**: Blur, sepia, vignette, and more filters (Premium)
-* **Watermarking**: Add text and image watermarks (Premium)
-* **Bulk Export**: Export multiple edited images at once (Premium)
-* **Cloud Processing**: High-performance cloud-based processing (Premium)
-
-**Perfect for:**
-* Photographers and designers
-* Bloggers and content creators
-* E-commerce stores
-* Corporate websites
-* Anyone who needs professional image editing in WordPress
-
-### Supporting Open Source
-When you purchase Advanced Image Editor Pro, 25% of all proceeds are donated to support the ImageMagick project—the powerful, free image processing library that makes professional image editing possible for millions of websites worldwide.
-
 == Installation ==
+
+**⚠️ Important Prerequisites:**
+This plugin requires the **ImageMagick PHP extension (Imagick)** to be installed and enabled on your server.
+
+**Imagick is extremely common and should be available on most modern hosting platforms.** If Imagick is not enabled:
+
+1. Contact your web hosting provider
+2. Request that they enable the ImageMagick PHP extension
+3. Most hosting providers can enable this quickly (usually within hours)
+4. **Enabling Imagick is a significant upgrade** for image handling on WordPress sites, leading to better results from plugins and core features
+
+**Installation Steps:**
 
 1. Upload the `advanced-image-editor` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to Media → Advanced Image Editor to start editing
+
+**Need help?** Contact your webhost provider if Imagick is not installed on your server.
 
 == Frequently Asked Questions ==
 
@@ -77,6 +76,10 @@ Yes! The plugin includes full ARIA support, keyboard navigation, and screen read
 = Can I use this plugin on mobile devices? =
 
 Yes, the editor is fully responsive and works on tablets and mobile devices.
+
+= Does this plugin require any special server configuration? =
+
+Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be installed and enabled on your server. Imagick is extremely common and should be available on most modern hosting platforms. Contact your web hosting provider if it's not installed - most can enable it quickly (usually within hours). Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
 == Screenshots ==
 

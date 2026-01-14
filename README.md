@@ -6,7 +6,9 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![WordPress Plugin Downloads](https://img.shields.io/badge/Downloads-Coming%20Soon-orange.svg)](https://wordpress.org/plugins/advanced-image-editor/)
 
-A professional WordPress plugin that brings advanced image editing capabilities directly to your WordPress admin panel. Edit images from your media library with real-time preview, contrast adjustment, unsharp masking, and seamless WordPress integration.
+A professional WordPress plugin that brings advanced image editing capabilities directly to your WordPress admin panel. **Requires the ImageMagick PHP extension** for superior image processing. Edit images from your media library with real-time preview, contrast adjustment, unsharp masking, and seamless WordPress integration.
+
+**🚀 Powered by ImageMagick**: This plugin requires the ImageMagick PHP extension for image processing. Imagick is extremely common and should be available on most modern hosting platforms. Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
 > **📦 Current Version: 2.2** | **📅 Released: January 14, 2025** | **⚡ WordPress 5.6+ Required**
 
@@ -37,6 +39,18 @@ Looking to process multiple images at once, add watermarks, or use advanced filt
 
 ## 🚀 Installation
 
+### Prerequisites
+**⚠️ Important**: This plugin requires the **ImageMagick PHP extension (Imagick)** to be installed and enabled on your server.
+
+**Imagick is extremely common and should be available on most modern hosting platforms.** If Imagick is not enabled:
+
+1. Contact your web hosting provider
+2. Request that they enable the ImageMagick PHP extension
+3. Most hosting providers can enable this quickly (usually within hours)
+4. **Enabling Imagick is a significant upgrade** for image handling on WordPress sites, leading to better results from plugins and core features
+
+### Installation Steps
+
 1. **Download** the plugin from [WordPress.org](https://wordpress.org/plugins/advanced-image-editor/)
 2. **Upload** the `advanced-image-editor` folder to `/wp-content/plugins/`
 3. **Activate** the plugin through the 'Plugins' menu in WordPress
@@ -45,17 +59,22 @@ Looking to process multiple images at once, add watermarks, or use advanced filt
 ### Requirements
 - **WordPress**: 5.6 or higher
 - **PHP**: 7.4 or higher
-- **ImageMagick Extension**: Required for image processing
+- **🟡 ImageMagick Extension (Imagick)**: **Required** for image processing
 
-### Imagick Extension Setup
-The plugin requires the ImageMagick PHP extension for image processing. If you see an error message:
+### ⚠️ ImageMagick Extension Setup
+**The plugin requires the ImageMagick PHP extension for image processing. Imagick is extremely common and should be available on most modern hosting platforms.**
 
-1. Contact your web hosting provider
-2. Request that they enable the Imagick PHP extension
+**Why Imagick?** Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features. ImageMagick provides superior image processing capabilities compared to GD library.
+
+**If Imagick is not enabled on your server:**
+
+1. **Contact your web hosting provider immediately**
+2. Request that they enable the ImageMagick PHP extension
 3. Most hosting providers can enable this quickly (usually within hours)
 4. If using shared hosting, you may need to upgrade to VPS or dedicated server
+5. **This is not optional** - the plugin will not function without Imagick
 
-**Note**: Imagick is extremely common and should be available on most modern hosting platforms.
+**Need help?** Contact your webhost provider if Imagick is not installed on your server.
 
 ## 📖 Usage
 
@@ -106,6 +125,9 @@ Yes! The plugin includes full ARIA support, keyboard navigation, and screen read
 
 ### Can I use this plugin on mobile devices?
 Yes, the editor is fully responsive and works on tablets and mobile devices.
+
+### Does this plugin require any special server configuration?
+Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be installed and enabled on your server. Imagick is extremely common and should be available on most modern hosting platforms. Contact your web hosting provider if it's not installed - most can enable it quickly (usually within hours). Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
 ## 🛠️ Development
 
@@ -181,14 +203,6 @@ This plugin is licensed under the GPL v2 or later.
 - [WordPress.org Support Forums](https://wordpress.org/support/plugin/advanced-image-editor/)
 - [GitHub Issues](https://github.com/rafael-minuesa/advanced-image-editor/issues)
 
-### Premium Support (Coming Soon)
-- Priority email support
-- Feature request consideration
-- Bug fix priority
-- Documentation access
-
-**For premium support inquiries:** [Contact us](mailto:support@prowoos.com)
-
 ---
 
-*Advanced Image Editor brings professional image editing capabilities to the WordPress ecosystem, powered by the open source ImageMagick library.* 🌟
+*Advanced Image Editor brings professional image editing capabilities to the WordPress ecosystem, powered by the Open-Source ImageMagick library.* 🌟
