@@ -91,7 +91,7 @@ class AIE_Ajax_Handler {
             wp_send_json_error(
                 sprintf(
                     __('Image dimensions (%1$dx%2$d) exceed maximum allowed size (%3$dx%4$d).', 'advanced-image-editor'),
-                    $width, $height, Advanced_Image_Filters::MAX_IMAGE_WIDTH, Advanced_Image_Filters::MAX_IMAGE_HEIGHT
+                    $width, $height, Advanced_Image_Editor::MAX_IMAGE_WIDTH, Advanced_Image_Editor::MAX_IMAGE_HEIGHT
                 )
             );
         }
