@@ -14,7 +14,7 @@ A professional WordPress plugin that brings advanced image editing capabilities 
 
 ## ✨ Features
 
-### Core Features (FREE)
+### Professional Image Editing
 - **🎨 Real-time Preview**: See filter changes instantly as you adjust sliders
 - **🔧 Contrast Adjustment**: Professional contrast control with fine-tuned precision
 - **⚡ Unsharp Masking**: Advanced sharpening with full control over amount, radius, and threshold
@@ -24,12 +24,8 @@ A professional WordPress plugin that brings advanced image editing capabilities 
 - **📱 Responsive Design**: Works perfectly on all screen sizes
 - **🔗 WordPress Integration**: Seamless media library workflow
 
-### Premium Features (Coming Soon)
-- **📦 Batch Processing**: Process multiple images simultaneously
-- **🎭 Advanced Filters**: Blur, sepia, vignette, curves, levels, and artistic effects
-- **💧 Watermarking**: Add custom text and image watermarks
-- **📤 Bulk Export**: Export multiple images with format conversion
-- **☁️ Cloud Processing**: High-performance cloud-based processing
+### Advanced Features
+Looking to process multiple images at once, add watermarks, or use advanced filters? Stay tuned for future updates that will bring even more professional image editing capabilities to WordPress.
 
 ## 🎯 Perfect For
 
@@ -77,9 +73,9 @@ The plugin requires the ImageMagick PHP extension for image processing. If you s
 
 ## 🤝 Supporting Open Source
 
-When you purchase Advanced Image Editor Pro, **25% of all proceeds are donated** to support the [ImageMagick project](https://imagemagick.org/support/#support)—the powerful, free image processing library that makes professional image editing possible for millions of websites worldwide.
+This plugin is powered by ImageMagick, the world's most comprehensive free software suite for image processing. ImageMagick has been a cornerstone of digital imaging since 1987, supporting millions of websites and applications worldwide.
 
-[![Sponsor ImageMagick](https://img.shields.io/badge/Sponsor-ImageMagick-orange.svg)](https://imagemagick.org/support/#support)
+[Learn more about ImageMagick](https://imagemagick.org/)
 
 ## 📸 Screenshots
 
@@ -195,16 +191,4 @@ This plugin is licensed under the GPL v2 or later.
 
 ---
 
-## 🚀 Advanced Image Editor Pro
-
-Looking for more advanced features? **Advanced Image Editor Pro** is coming soon with:
-
-- **Batch Processing**: Process 10-100+ images simultaneously
-- **Advanced Filters**: Professional color correction and artistic effects
-- **Watermarking**: Custom text and image watermarks
-- **Bulk Export**: Format conversion and size optimization
-- **Cloud Processing**: Unlimited processing power
-
-[Learn more about Advanced Image Editor Pro](https://your-website.com/advanced-image-editor-pro)
-
-*Advanced Image Editor is more than just a plugin—it's a commitment to bringing professional image editing capabilities to the WordPress ecosystem while supporting the open source community.* 🌟
+*Advanced Image Editor brings professional image editing capabilities to the WordPress ecosystem, powered by the open source ImageMagick library.* 🌟
