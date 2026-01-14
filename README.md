@@ -1,11 +1,14 @@
 # Advanced Image Editor
 
+[![Version](https://img.shields.io/badge/Version-2.1-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
 [![WordPress Plugin Version](https://img.shields.io/badge/WordPress-5.6+-blue.svg)](https://wordpress.org/plugins/advanced-image-editor/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4+-purple.svg)](https://php.net/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![WordPress Plugin Downloads](https://img.shields.io/badge/Downloads-Coming%20Soon-orange.svg)](https://wordpress.org/plugins/advanced-image-editor/)
 
 A professional WordPress plugin that brings advanced image editing capabilities directly to your WordPress admin panel. Edit images from your media library with real-time preview, contrast adjustment, unsharp masking, and seamless WordPress integration.
+
+> **📦 Current Version: 2.1** | **📅 Released: January 14, 2025** | **⚡ WordPress 5.6+ Required**
 
 ![Advanced Image Editor Banner](./.wordpress-org/banner-1544x500.png)
 
