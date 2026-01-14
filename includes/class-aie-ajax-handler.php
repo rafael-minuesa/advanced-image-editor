@@ -74,7 +74,7 @@ class AIE_Ajax_Handler {
 
         // Check file size
         $file_size = filesize($path);
-        if ($file_size === false || $file_size > Advanced_Image_Filters::MAX_FILE_SIZE) {
+        if ($file_size === false || $file_size > Advanced_Image_Editor::MAX_FILE_SIZE) {
             wp_send_json_error(__('Image file is too large to process.', 'advanced-image-editor'));
         }
 
@@ -87,11 +87,11 @@ class AIE_Ajax_Handler {
         $width = $image_info[0];
         $height = $image_info[1];
 
-        if ($width > Advanced_Image_Filters::MAX_IMAGE_WIDTH || $height > Advanced_Image_Filters::MAX_IMAGE_HEIGHT) {
-            /* translators: 1: Current image width, 2: Current image height, 3: Maximum allowed width, 4: Maximum allowed height */
+        if ($width > Advanced_Image_Editor::MAX_IMAGE_WIDTH || $height > Advanced_Image_Editor::MAX_IMAGE_HEIGHT) {
             wp_send_json_error(
                 sprintf(
-                    __('Image dimensions (%1$dx%2$d) exceed maximum allowed size (%3$dx%4$d).', 'advanced-image-editor'),
+            /* translators: 1: Current image width, 2: Current image height, 3: Maximum allowed width, 4: Maximum allowed height */
+            __('Image dimensions (%1$dx%2$d) exceed maximum allowed size (%3$dx%4$d).', 'advanced-image-editor'),
                     $width, $height, Advanced_Image_Editor::MAX_IMAGE_WIDTH, Advanced_Image_Editor::MAX_IMAGE_HEIGHT
                 )
             );
@@ -127,7 +127,7 @@ class AIE_Ajax_Handler {
             // Create preview in JPEG format for display (but keep original for saving)
             $preview_img = clone $img;
             $preview_img->setImageFormat('jpeg');
-            $preview_img->setImageCompressionQuality(Advanced_Image_Filters::PREVIEW_QUALITY);
+            $preview_img->setImageCompressionQuality(Advanced_Image_Editor::PREVIEW_QUALITY);
             $preview_blob = $preview_img->getImageBlob();
             $preview_base64 = base64_encode($preview_blob);
             $preview_img->clear();
@@ -149,10 +149,10 @@ class AIE_Ajax_Handler {
                 ]
             );
 
-            /* translators: %s: Error message from image processing */
             wp_send_json_error(
                 sprintf(
-                    __('Image processing failed: %s', 'advanced-image-editor'),
+            /* translators: %s: Error message from image processing */
+            __('Image processing failed: %s', 'advanced-image-editor'),
                     $e->getMessage()
                 )
             );
@@ -309,17 +309,17 @@ class AIE_Ajax_Handler {
 
         // Use IP + user ID as identifier for rate limiting
         $identifier = md5($ip . '_' . $user_id . '_' . $action);
-        $transient_key = 'aif_rate_limit_' . $identifier;
+        $transient_key = 'aie_rate_limit_' . $identifier;
 
         $requests = get_transient($transient_key);
 
         if ($requests === false) {
             // First request in window
-            set_transient($transient_key, 1, Advanced_Image_Filters::RATE_LIMIT_WINDOW);
+            set_transient($transient_key, 1, Advanced_Image_Editor::RATE_LIMIT_WINDOW);
             return false;
         }
 
-        if ($requests >= Advanced_Image_Filters::RATE_LIMIT_REQUESTS) {
+        if ($requests >= Advanced_Image_Editor::RATE_LIMIT_REQUESTS) {
             // Rate limit exceeded
             $this->log_error(
                 'Rate limit exceeded',
@@ -335,7 +335,7 @@ class AIE_Ajax_Handler {
         }
 
         // Increment counter
-        set_transient($transient_key, $requests + 1, Advanced_Image_Filters::RATE_LIMIT_WINDOW);
+        set_transient($transient_key, $requests + 1, Advanced_Image_Editor::RATE_LIMIT_WINDOW);
         return false;
     }
 

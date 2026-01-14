@@ -173,7 +173,7 @@ jQuery(function($){
         showLoading();
         
         const data = {
-            action: "aif_preview",
+            action: "aie_preview",
             _ajax_nonce: AIE_AJAX.nonce,
             image_id: $imageId.val(),
             contrast: $contrast.val(),
@@ -271,7 +271,7 @@ jQuery(function($){
         showButtonLoading($('#aie-save'));
 
         const data = {
-            action: "aif_save",
+            action: "aie_save",
             _ajax_nonce: AIE_AJAX.nonce,
             image_id: $imageId.val(),
             image_data: previewSrc
