@@ -7,6 +7,11 @@
  * @license GPL-2.0+
  * @link https://github.com/rafael-minuesa/advanced-image-editor
  */
+
+// Prevent direct file access
+if (!defined('ABSPATH')) {
+    exit;
+}
 ?>
 <div class="wrap">
     <h1><?php esc_html_e('Advanced Image Editor', 'advanced-image-editor'); ?></h1>

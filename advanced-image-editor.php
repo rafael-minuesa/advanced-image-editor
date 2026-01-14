@@ -11,7 +11,7 @@
  * Text Domain: advanced-image-editor
  * Domain Path: /languages
  * Requires at least: 5.6
- * Tested up to: 6.4
+ * Tested up to: 6.9
  * Requires PHP: 7.4
  */
 

@@ -39,7 +39,7 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce($_POST['_ajax_nonce'], 'aif_nonce')) {
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(wp_unslash($_POST['_ajax_nonce']), 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -87,9 +87,10 @@ class AIE_Ajax_Handler {
         $height = $image_info[1];
 
         if ($width > Advanced_Image_Filters::MAX_IMAGE_WIDTH || $height > Advanced_Image_Filters::MAX_IMAGE_HEIGHT) {
+            /* translators: 1: Current image width, 2: Current image height, 3: Maximum allowed width, 4: Maximum allowed height */
             wp_send_json_error(
                 sprintf(
-                    __('Image dimensions (%dx%d) exceed maximum allowed size (%dx%d).', 'advanced-image-editor'),
+                    __('Image dimensions (%1$dx%2$d) exceed maximum allowed size (%3$dx%4$d).', 'advanced-image-editor'),
                     $width, $height, Advanced_Image_Filters::MAX_IMAGE_WIDTH, Advanced_Image_Filters::MAX_IMAGE_HEIGHT
                 )
             );
@@ -133,7 +134,7 @@ class AIE_Ajax_Handler {
             wp_send_json_success([
                 'preview' => 'data:image/jpeg;base64,' . $preview_base64,
                 'original_format' => $original_format,
-                'mime_type' => aie_get_mime_type_from_format($original_format)
+                'mime_type' => advanced_image_editor_get_mime_type_from_format($original_format)
             ]);
 
         } catch (Exception $e) {
@@ -147,6 +148,7 @@ class AIE_Ajax_Handler {
                 ]
             );
 
+            /* translators: %s: Error message from image processing */
             wp_send_json_error(
                 sprintf(
                     __('Image processing failed: %s', 'advanced-image-editor'),
@@ -176,7 +178,7 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce($_POST['_ajax_nonce'], 'aif_nonce')) {
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(wp_unslash($_POST['_ajax_nonce']), 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -238,7 +240,7 @@ class AIE_Ajax_Handler {
             wp_send_json_error(__('Failed to access upload directory.', 'advanced-image-editor'));
         }
 
-        $extension = aie_get_extension_from_mime_type($mime_type);
+        $extension = advanced_image_editor_get_extension_from_mime_type($mime_type);
         $filename = sanitize_file_name($original_name . '-edited-' . time() . '.' . $extension);
         $file_path = trailingslashit($upload_dir['path']) . $filename;
 
@@ -246,6 +248,7 @@ class AIE_Ajax_Handler {
         $upload = wp_upload_bits($filename, null, $decoded);
 
         if ($upload['error']) {
+            /* translators: %s: Upload error message */
             wp_send_json_error(sprintf(__('Failed to save image file: %s', 'advanced-image-editor'), $upload['error']));
         }
 
@@ -266,7 +269,7 @@ class AIE_Ajax_Handler {
 
         if (is_wp_error($new_id)) {
             // Clean up uploaded file on error
-            @unlink($file_path);
+            wp_delete_file($file_path);
 
             $this->log_save_error(
                 'Failed to insert attachment',
@@ -410,7 +413,7 @@ class AIE_Ajax_Handler {
 
         foreach ($ip_headers as $header) {
             if (!empty($_SERVER[$header])) {
-                $ip = $_SERVER[$header];
+                $ip = wp_unslash($_SERVER[$header]);
                 // Handle comma-separated IPs (from proxies)
                 if (strpos($ip, ',') !== false) {
                     $ip = trim(explode(',', $ip)[0]);

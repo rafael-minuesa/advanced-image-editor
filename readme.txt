@@ -1,9 +1,9 @@
 === Advanced Image Editor ===
 
 Contributors: rafaelminuesa
-Tags: image, editor, filter, contrast, sharpen, media, photo, edit, wordpress
+Tags: image, editor, filter, contrast, sharpen
 Requires at least: 5.6
-Tested up to: 6.4
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 2.1
 License: GPLv2 or later

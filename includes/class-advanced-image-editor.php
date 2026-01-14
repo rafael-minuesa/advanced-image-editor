@@ -64,7 +64,6 @@ class Advanced_Image_Editor {
     public function __construct() {
         $this->ajax_handler = new AIE_Ajax_Handler();
 
-        add_action('init', [$this, 'load_textdomain']);
         add_action('admin_menu', [$this, 'add_menu']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_assets']);
 
@@ -72,12 +71,6 @@ class Advanced_Image_Editor {
         add_filter('plugin_action_links_' . AIE_PLUGIN_BASENAME, [$this, 'add_plugin_action_links']);
     }
 
-    /**
-     * Load plugin textdomain for translations
-     */
-    public function load_textdomain() {
-        load_plugin_textdomain('advanced-image-editor', false, dirname(AIE_PLUGIN_BASENAME) . '/languages');
-    }
 
     /**
      * Add action links to plugin row
@@ -86,7 +79,7 @@ class Advanced_Image_Editor {
      * @return array Modified links array
      */
     public function add_plugin_action_links($links) {
-        $settings_link = '<a href="' . admin_url('upload.php?page=advanced-image-editor') . '">' . __('Open Editor', 'advanced-image-editor') . '</a>';
+        $settings_link = '<a href="' . esc_url(admin_url('upload.php?page=advanced-image-editor')) . '">' . esc_html__('Open Editor', 'advanced-image-editor') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }
@@ -96,8 +89,8 @@ class Advanced_Image_Editor {
      */
     public function add_menu() {
         add_media_page(
-            __('Advanced Image Editor', 'advanced-image-editor'),
-            __('Advanced Image Editor', 'advanced-image-editor'),
+            esc_html__('Advanced Image Editor', 'advanced-image-editor'),
+            esc_html__('Advanced Image Editor', 'advanced-image-editor'),
             'upload_files',
             'advanced-image-editor',
             [$this, 'render_editor_page']
@@ -171,7 +164,7 @@ class Advanced_Image_Editor {
     public function render_editor_page() {
         // Check user capability
         if (!current_user_can('upload_files')) {
-            wp_die(__('You do not have sufficient permissions to access this page.', 'advanced-image-editor'));
+            wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'advanced-image-editor'));
         }
 
         // Check if Imagick is available

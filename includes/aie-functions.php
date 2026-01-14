@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
  * @param string $format Image format (from Imagick)
  * @return string MIME type
  */
-function aie_get_mime_type_from_format($format) {
+function advanced_image_editor_get_mime_type_from_format($format) {
     $format = strtolower($format);
 
     $mime_types = [
@@ -40,7 +40,7 @@ function aie_get_mime_type_from_format($format) {
  * @param string $mime_type MIME type
  * @return string File extension
  */
-function aie_get_extension_from_mime_type($mime_type) {
+function advanced_image_editor_get_extension_from_mime_type($mime_type) {
     $extensions = [
         'image/jpeg' => 'jpg',
         'image/png' => 'png',
