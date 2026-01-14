@@ -136,7 +136,7 @@ class Advanced_Image_Editor {
         // Localize script with translations and AJAX data
         wp_localize_script('aie-editor-js', 'AIE_AJAX', [
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce'    => wp_create_nonce('aif_nonce'),
+            'nonce'    => wp_create_nonce('aie_nonce'),
             'i18n'     => [
                 'select_image'       => __('Select an Image to Edit', 'advanced-image-editor'),
                 'use_this_image'     => __('Use This Image', 'advanced-image-editor'),

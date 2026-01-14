@@ -39,7 +39,8 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(wp_unslash($_POST['_ajax_nonce']), 'aie_nonce')) {
+        $nonce = isset($_POST['_ajax_nonce']) ? wp_unslash($_POST['_ajax_nonce']) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -178,7 +179,8 @@ class AIE_Ajax_Handler {
         }
 
         // Validate nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(wp_unslash($_POST['_ajax_nonce']), 'aie_nonce')) {
+        $nonce = isset($_POST['_ajax_nonce']) ? wp_unslash($_POST['_ajax_nonce']) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -194,7 +196,7 @@ class AIE_Ajax_Handler {
         $attachment_id = absint($_POST['image_id']);
         // Don't sanitize base64 data with sanitize_text_field - it will corrupt it
         // Instead, validate the base64 string format
-        $image_data = wp_unslash($_POST['image_data']);
+        $image_data = isset($_POST['image_data']) ? wp_unslash($_POST['image_data']) : '';
 
         // Validate base64 format - accept any image MIME type
         if (!preg_match('/^data:image\/[a-z]+;base64,/', $image_data)) {
@@ -413,7 +415,7 @@ class AIE_Ajax_Handler {
 
         foreach ($ip_headers as $header) {
             if (!empty($_SERVER[$header])) {
-                $ip = wp_unslash($_SERVER[$header]);
+                $ip = wp_unslash($_SERVER[$header] ?? '');
                 // Handle comma-separated IPs (from proxies)
                 if (strpos($ip, ',') !== false) {
                     $ip = trim(explode(',', $ip)[0]);
