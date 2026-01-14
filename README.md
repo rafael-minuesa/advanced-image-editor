@@ -1,6 +1,17 @@
-# Advanced Image Editor WordPress Plugin
+# Advanced Image Editor for WordPress
 
-A professional image editing plugin for WordPress featuring advanced filters, real-time previews, and seamless media library integration. Apply contrast adjustments, unsharp masking, and other professional-grade image enhancements directly within your WordPress admin.
+![WordPress Plugin](https://img.shields.io/badge/WordPress-Plugin-blue.svg)
+![Version](https://img.shields.io/badge/version-2.1-green.svg)
+![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)
+![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-0073aa.svg)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-96588a.svg)
+
+== Description ==
+
+A professional image editing plugin for WordPress featuring advanced filters, real-time previews, and seamless media library integration. 
+
+Apply contrast adjustments, unsharp masking, and other professional-grade image enhancements directly within your WordPress admin.
 
 ## Features
 - **Real-time Preview**: See filter changes instantly as you adjust sliders
