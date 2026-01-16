@@ -14,9 +14,13 @@ jQuery(function($){
     const $loading = $('#aie-loading');
     const $imageId = $('#aie-image-id');
     const $preview = $('#aie-preview');
+    const $originalPreview = $('#aie-original-preview');
     const $noPreview = $('#aie-no-preview');
     const $editor = $('#aie-editor');
     const $selectedImage = $('#aie-selected-image');
+    const $previewToggle = $('#aie-preview-toggle');
+    const $compareSlider = $('#aie-compare-slider');
+    const $sliderHandle = $('#aie-slider-handle');
     
     // Value displays
     const $contrastValue = $('#aie-contrast-value');
@@ -64,6 +68,42 @@ jQuery(function($){
     
     // Update displays when sliders change
     $contrast.add($amount).add($radius).add($threshold).on('input', updateValueDisplays);
+
+    // Preview toggle functionality
+    $previewToggle.on('change', function() {
+        const isChecked = $(this).is(':checked');
+        if (isChecked) {
+            $preview.show();
+            $originalPreview.show();
+            $sliderHandle.show();
+            updateSliderPosition();
+        } else {
+            $preview.hide();
+            $originalPreview.hide();
+            $sliderHandle.hide();
+        }
+    });
+
+    // Comparison slider functionality
+    $compareSlider.on('input', function() {
+        updateSliderPosition();
+    });
+
+    function updateSliderPosition() {
+        const sliderValue = $compareSlider.val();
+        const containerWidth = $('.aie-preview-wrapper').width();
+        const handlePosition = (sliderValue / 100) * containerWidth;
+
+        $sliderHandle.css('left', handlePosition + 'px');
+        $originalPreview.css('clip-path', `inset(0 ${100 - sliderValue}% 0 0)`);
+    }
+
+    // Handle image loading for proper slider positioning
+    $preview.add($originalPreview).on('load', function() {
+        if ($previewToggle.is(':checked')) {
+            updateSliderPosition();
+        }
+    });
 
     // Add keyboard navigation support for sliders
     $contrast.add($amount).add($radius).add($threshold).on('keydown', function(e) {
@@ -171,7 +211,7 @@ jQuery(function($){
         }
 
         showLoading();
-        
+
         const data = {
             action: "aie_preview",
             _ajax_nonce: AIE_AJAX.nonce,
@@ -181,11 +221,17 @@ jQuery(function($){
             radius: $radius.val(),
             threshold: $threshold.val(),
         };
-        
+
         $.post(AIE_AJAX.ajax_url, data, function(resp){
             if (resp.success) {
-                $preview.attr('src', resp.data.preview).show();
+                $preview.attr('src', resp.data.preview);
+                if ($previewToggle.is(':checked')) {
+                    $preview.show();
+                }
                 $noPreview.hide();
+
+                // Update slider position when new preview loads
+                updateSliderPosition();
             } else {
                 console.error('Preview failed:', resp.data);
                 alert(AIE_AJAX.i18n.preview_failed + ': ' + (resp.data || AIE_AJAX.i18n.unknown_error));
@@ -335,6 +381,10 @@ jQuery(function($){
             $('#save-status').text(AIE_AJAX.i18n.save_status_enabled || 'Ready to save edited image');
             $('#reset-status').text(AIE_AJAX.i18n.reset_status_enabled || 'Ready to reset filters');
 
+            // Load original image for comparison
+            $originalPreview.attr('src', attachment.url).show();
+            $compareSlider.val(100); // Start with full edited view
+
             // Reset to defaults and send preview
             resetToDefaults();
         });
@@ -349,9 +399,33 @@ jQuery(function($){
             $editor.show();
             $selectedImage.show();
             $('#aie-save, #aie-reset').prop('disabled', false).attr('aria-disabled', 'false');
+
+            // Load original image for comparison
+            loadOriginalImage();
             sendPreview();
         }
     });
+
+    // Load original image for comparison
+    function loadOriginalImage() {
+        if (!validateImageID()) {
+            return;
+        }
+
+        const data = {
+            action: "aie_get_original",
+            _ajax_nonce: AIE_AJAX.nonce,
+            image_id: $imageId.val(),
+        };
+
+        $.post(AIE_AJAX.ajax_url, data, function(resp){
+            if (resp.success) {
+                $originalPreview.attr('src', resp.data.original_url).show();
+                $compareSlider.val(100);
+                updateSliderPosition();
+            }
+        });
+    }
 
     // Cleanup on page unload to prevent memory leaks
     $(window).on('beforeunload', cleanup);

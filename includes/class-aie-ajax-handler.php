@@ -22,6 +22,7 @@ class AIE_Ajax_Handler {
     public function __construct() {
         add_action('wp_ajax_aie_preview', [$this, 'ajax_preview']);
         add_action('wp_ajax_aie_save', [$this, 'ajax_save']);
+        add_action('wp_ajax_aie_get_original', [$this, 'ajax_get_original']);
     }
 
     /**
@@ -295,6 +296,45 @@ class AIE_Ajax_Handler {
             'new_attachment_id' => $new_id,
             'message' => __('Image saved successfully!', 'advanced-image-editor'),
             'edit_link' => $edit_link ?: admin_url('post.php?post=' . $new_id . '&action=edit')
+        ]);
+    }
+
+    /**
+     * AJAX handler for getting original image URL
+     */
+    public function ajax_get_original() {
+        // Check user capability
+        if (!current_user_can('upload_files')) {
+            wp_send_json_error(__('You do not have permission to perform this action.', 'advanced-image-editor'));
+        }
+
+        // Validate nonce
+        $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
+            wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
+        }
+
+        // Validate required parameters
+        if (!isset($_POST['image_id']) || empty($_POST['image_id'])) {
+            wp_send_json_error(__('No image selected.', 'advanced-image-editor'));
+        }
+
+        $attachment_id = absint($_POST['image_id']);
+
+        // Check if attachment exists
+        if (!wp_attachment_is_image($attachment_id)) {
+            wp_send_json_error(__('Invalid image attachment.', 'advanced-image-editor'));
+        }
+
+        // Get the full-size image URL
+        $image_url = wp_get_attachment_image_url($attachment_id, 'full');
+
+        if (!$image_url) {
+            wp_send_json_error(__('Unable to get image URL.', 'advanced-image-editor'));
+        }
+
+        wp_send_json_success([
+            'original_url' => $image_url
         ]);
     }
 

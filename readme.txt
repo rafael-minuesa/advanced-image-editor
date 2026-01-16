@@ -5,7 +5,7 @@ Tags: image, editor, filter, contrast, sharpen
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,14 @@ Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be insta
 
 == Changelog ==
 
-= 2.1 =
+= 2.3 =
+* Added preview toggle checkbox to show/hide image preview
+* Added before/after comparison slider with draggable handle
+* Redesigned layout with preview at top and compact controls sidebar
+* Improved responsive design for mobile devices
+* Enhanced user interface with better space utilization
+
+= 2.2 =
 * Complete plugin rename from "Advanced Image Filters" to "Advanced Image Editor"
 * Enhanced security with rate limiting, input validation, and capability checks
 * Improved accessibility with ARIA support and keyboard navigation
@@ -99,7 +106,7 @@ Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be insta
 * Comprehensive internationalization support
 * WordPress coding standards compliance
 
-= 2.0 =
+= 2.1 =
 * Initial release with basic image editing functionality
 
 == Upgrade Notice ==
