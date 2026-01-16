@@ -9,7 +9,7 @@ Stable tag: 2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking for WordPress media library. Requires ImageMagick PHP extension.
+Professional image editing with real-time preview, contrast adjustment, and unsharp masking. Requires ImageMagick.
 
 == Description ==
 
