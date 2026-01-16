@@ -27,23 +27,25 @@
     margin-bottom: 15px;
 }
 
-/* Image Selection */
-#aie-select-image {
-    font-size: 14px;
-    padding: 12px 24px;
-    height: auto;
-}
-
-.aie-selected-info {
-    background: #f8f9fa;
+/* Compact Image Selection */
+.aie-compact-section {
     padding: 15px;
-    border-radius: 4px;
-    margin-top: 15px;
-    border-left: 4px solid #2271b1;
 }
 
-.aie-selected-info p {
-    margin: 0;
+.aie-image-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.aie-button-small {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.aie-selected-image-name {
+    font-weight: 600;
+    color: #2271b1;
     font-size: 14px;
 }
 
@@ -54,9 +56,14 @@
     margin-top: 20px;
 }
 
+.aie-preview-panel {
+    flex: 1;
+    min-width: 300px;
+}
+
 .aie-controls-panel {
     flex: 1;
-    min-width: 250px;
+    min-width: 280px;
 }
 
 .aie-controls-panel h3 {
@@ -87,14 +94,29 @@
     font-size: 13px;
 }
 
-.aie-control-group input[type="range"] {
-    width: 100%;
+.aie-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.aie-input-group input[type="number"] {
+    width: 70px;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.aie-input-group input[type="range"] {
+    flex: 1;
     height: 5px;
     -webkit-appearance: none;
     background: #f0f0f0;
     border-radius: 3px;
     outline: none;
-    margin: 8px 0;
 }
 
 .aie-control-group input[type="range"]::-webkit-slider-thumb {
@@ -445,6 +467,11 @@
         gap: 15px;
     }
 
+    .aie-preview-panel,
+    .aie-controls-panel {
+        min-width: auto;
+    }
+
     .aie-preview-controls {
         flex-direction: column;
         gap: 10px;
@@ -457,6 +484,22 @@
 
     .aie-preview-wrapper {
         max-width: 100%;
+    }
+
+    .aie-image-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .aie-input-group {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .aie-input-group input[type="number"] {
+        width: 100%;
     }
 
     .aie-button-group {

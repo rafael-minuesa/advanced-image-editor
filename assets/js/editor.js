@@ -22,17 +22,23 @@ jQuery(function($){
     const $compareSlider = $('#aie-compare-slider');
     const $sliderHandle = $('#aie-slider-handle');
     
-    // Value displays
+    // Value displays (legacy - keeping for compatibility)
     const $contrastValue = $('#aie-contrast-value');
     const $amountValue = $('#aie-amount-value');
     const $radiusValue = $('#aie-radius-value');
     const $thresholdValue = $('#aie-threshold-value');
-    
+
     // Sliders
     const $contrast = $('#aie-contrast');
     const $amount = $('#aie-amount');
     const $radius = $('#aie-radius');
     const $threshold = $('#aie-threshold');
+
+    // Number inputs
+    const $contrastInput = $('#aie-contrast-input');
+    const $amountInput = $('#aie-amount-input');
+    const $radiusInput = $('#aie-radius-input');
+    const $thresholdInput = $('#aie-threshold-input');
     
     // Create loading indicator if not present
     if (!$loading.length) {
@@ -51,10 +57,17 @@ jQuery(function($){
         const radiusVal = $radius.val();
         const thresholdVal = $threshold.val();
 
+        // Update legacy value displays
         $contrastValue.text(contrastVal);
         $amountValue.text(amountVal);
         $radiusValue.text(radiusVal);
         $thresholdValue.text(thresholdVal);
+
+        // Update number inputs
+        $contrastInput.val(contrastVal);
+        $amountInput.val(amountVal);
+        $radiusInput.val(radiusVal);
+        $thresholdInput.val(thresholdVal);
 
         // Update ARIA attributes for accessibility
         $contrast.attr('aria-valuenow', contrastVal);
@@ -68,6 +81,24 @@ jQuery(function($){
     
     // Update displays when sliders change
     $contrast.add($amount).add($radius).add($threshold).on('input', updateValueDisplays);
+
+    // Sync number inputs with sliders
+    $contrastInput.on('input', function() {
+        const value = $(this).val();
+        $contrast.val(value).trigger('input');
+    });
+    $amountInput.on('input', function() {
+        const value = $(this).val();
+        $amount.val(value).trigger('input');
+    });
+    $radiusInput.on('input', function() {
+        const value = $(this).val();
+        $radius.val(value).trigger('input');
+    });
+    $thresholdInput.on('input', function() {
+        const value = $(this).val();
+        $threshold.val(value).trigger('input');
+    });
 
     // Preview toggle functionality
     $previewToggle.on('change', function() {
@@ -266,6 +297,7 @@ jQuery(function($){
 
         // Remove event listeners
         $(document).off('keydown', '#aie-contrast, #aie-amount, #aie-radius, #aie-threshold');
+        $(document).off('input', '#aie-contrast-input, #aie-amount-input, #aie-radius-input, #aie-threshold-input');
         $('#aie-reset').off('click');
         $('#aie-save').off('click');
         $('#aie-select-image').off('click');

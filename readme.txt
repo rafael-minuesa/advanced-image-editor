@@ -5,11 +5,11 @@ Tags: image, editor, filter, contrast, sharpen
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.3
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Professional image editing with real-time preview, contrast adjustment, and unsharp masking. Requires ImageMagick.
+Advanced image editing with real-time preview, contrast adjustment, and sharpening filters. Requires ImageMagick PHP extension.
 
 == Description ==
 
