@@ -14,15 +14,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class AIE_Ajax_Handler {
+class ADVAIMG_Ajax_Handler {
 
     /**
      * Constructor - Register AJAX hooks
      */
     public function __construct() {
-        add_action('wp_ajax_aie_preview', [$this, 'ajax_preview']);
-        add_action('wp_ajax_aie_save', [$this, 'ajax_save']);
-        add_action('wp_ajax_aie_get_original', [$this, 'ajax_get_original']);
+        add_action('wp_ajax_advaimg_preview', [$this, 'ajax_preview']);
+        add_action('wp_ajax_advaimg_save', [$this, 'ajax_save']);
+        add_action('wp_ajax_advaimg_get_original', [$this, 'ajax_get_original']);
     }
 
     /**
@@ -41,7 +41,7 @@ class AIE_Ajax_Handler {
 
         // Validate nonce
         $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
-        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'advaimg_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -181,7 +181,7 @@ class AIE_Ajax_Handler {
 
         // Validate nonce
         $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
-        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'advaimg_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -195,25 +195,23 @@ class AIE_Ajax_Handler {
         }
 
         $attachment_id = absint($_POST['image_id']);
-        // Don't sanitize base64 data with sanitize_text_field - it will corrupt it
-        // Instead, validate the base64 string format
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Base64 image data, validated below
-        $image_data = isset($_POST['image_data']) ? wp_unslash($_POST['image_data']) : '';
 
-        // Validate base64 format - accept any image MIME type
-        if (!preg_match('/^data:image\/[a-z]+;base64,/', $image_data)) {
+        // Sanitize and validate base64 image data
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized via sanitize_base64_image_data method
+        $raw_image_data = isset($_POST['image_data']) ? wp_unslash($_POST['image_data']) : '';
+        $sanitized = $this->sanitize_base64_image_data($raw_image_data);
+
+        if (is_wp_error($sanitized)) {
             $this->log_save_error(
-                'Invalid base64 format received',
+                'Image data validation failed: ' . $sanitized->get_error_message(),
                 $attachment_id,
-                ['data_length' => strlen($image_data)]
+                ['error_code' => $sanitized->get_error_code()]
             );
-            wp_send_json_error(__('Invalid image data format.', 'advanced-image-editor'));
+            wp_send_json_error($sanitized->get_error_message());
         }
 
-        // Extract MIME type and data
-        preg_match('/^data:image\/([a-z]+);base64,/', $image_data, $matches);
-        $mime_type = 'image/' . ($matches[1] ?? 'jpeg');
-        $image_data = str_replace('data:image/' . ($matches[1] ?? 'jpeg') . ';base64,', '', $image_data);
+        $mime_type = $sanitized['mime_type'];
+        $decoded = $sanitized['decoded'];
 
         // Verify attachment exists
         if (!wp_attachment_is_image($attachment_id)) {
@@ -224,19 +222,6 @@ class AIE_Ajax_Handler {
         $original_path = get_attached_file($attachment_id);
         $original_info = pathinfo($original_path);
         $original_name = $original_info['filename'];
-
-        // Strip base64 header
-        $decoded = base64_decode($image_data, true);
-
-        if ($decoded === false) {
-            wp_send_json_error(__('Failed to decode image data.', 'advanced-image-editor'));
-        }
-
-        // Validate decoded data is actually an image
-        $image_info = @getimagesizefromstring($decoded);
-        if ($image_info === false) {
-            wp_send_json_error(__('Decoded data is not a valid image.', 'advanced-image-editor'));
-        }
 
         // Create new file with unique name
         $upload_dir = wp_upload_dir();
@@ -310,7 +295,7 @@ class AIE_Ajax_Handler {
 
         // Validate nonce
         $nonce = isset($_POST['_ajax_nonce']) ? sanitize_key(wp_unslash($_POST['_ajax_nonce'])) : '';
-        if (empty($nonce) || !wp_verify_nonce($nonce, 'aie_nonce')) {
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'advaimg_nonce')) {
             wp_send_json_error(__('Security check failed.', 'advanced-image-editor'));
         }
 
@@ -350,7 +335,7 @@ class AIE_Ajax_Handler {
 
         // Use IP + user ID as identifier for rate limiting
         $identifier = md5($ip . '_' . $user_id . '_' . $action);
-        $transient_key = 'aie_rate_limit_' . $identifier;
+        $transient_key = 'advaimg_rate_limit_' . $identifier;
 
         $requests = get_transient($transient_key);
 
@@ -487,5 +472,75 @@ class AIE_Ajax_Handler {
                 'action' => 'save_edited_image'
             ], $context)
         );
+    }
+
+    /**
+     * Sanitize and validate base64 image data
+     *
+     * Base64 image data cannot be sanitized with standard WordPress functions
+     * as they would corrupt the data. Instead, we validate the format strictly
+     * and ensure only valid base64 characters are present.
+     *
+     * @param string $data Raw base64 image data from POST
+     * @return array|WP_Error Array with 'mime_type' and 'base64' on success, WP_Error on failure
+     */
+    private function sanitize_base64_image_data($data) {
+        // Allowed image MIME types
+        $allowed_types = [
+            'jpeg' => 'image/jpeg',
+            'jpg'  => 'image/jpeg',
+            'png'  => 'image/png',
+            'gif'  => 'image/gif',
+            'webp' => 'image/webp',
+        ];
+
+        // Validate data URI format and extract components
+        if (!preg_match('/^data:image\/([a-z]+);base64,([A-Za-z0-9+\/=]+)$/', $data, $matches)) {
+            return new WP_Error('invalid_format', __('Invalid image data format.', 'advanced-image-editor'));
+        }
+
+        $image_type = strtolower($matches[1]);
+        $base64_data = $matches[2];
+
+        // Validate image type against whitelist
+        if (!isset($allowed_types[$image_type])) {
+            return new WP_Error('invalid_type', __('Unsupported image type.', 'advanced-image-editor'));
+        }
+
+        // Validate base64 string length (sanity check - max 50MB encoded)
+        if (strlen($base64_data) > 50 * 1024 * 1024 * 1.37) {
+            return new WP_Error('too_large', __('Image data is too large.', 'advanced-image-editor'));
+        }
+
+        // Decode and validate
+        $decoded = base64_decode($base64_data, true);
+        if ($decoded === false) {
+            return new WP_Error('decode_failed', __('Failed to decode image data.', 'advanced-image-editor'));
+        }
+
+        // Verify decoded data is actually an image
+        $image_info = @getimagesizefromstring($decoded);
+        if ($image_info === false) {
+            return new WP_Error('not_image', __('Decoded data is not a valid image.', 'advanced-image-editor'));
+        }
+
+        // Verify MIME type matches
+        $detected_mime = $image_info['mime'];
+        $expected_mime = $allowed_types[$image_type];
+
+        // Allow jpeg/jpg flexibility
+        $jpeg_mimes = ['image/jpeg', 'image/jpg'];
+        $mime_matches = ($detected_mime === $expected_mime) ||
+                        (in_array($detected_mime, $jpeg_mimes, true) && in_array($expected_mime, $jpeg_mimes, true));
+
+        if (!$mime_matches) {
+            return new WP_Error('mime_mismatch', __('Image type does not match data.', 'advanced-image-editor'));
+        }
+
+        return [
+            'mime_type' => $detected_mime,
+            'base64'    => $base64_data,
+            'decoded'   => $decoded,
+        ];
     }
 }

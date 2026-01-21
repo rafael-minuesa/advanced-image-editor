@@ -44,7 +44,7 @@ jQuery(function($){
     if (!$loading.length) {
         $('body').append(
             '<div id="aie-loading" style="display:none;" role="alert" aria-live="assertive">' +
-            '<span>' + AIE_AJAX.i18n.processing + '</span>' +
+            '<span>' + ADVAIMG_AJAX.i18n.processing + '</span>' +
             '<div id="aie-loading-progress"><div id="aie-loading-progress-bar"></div></div>' +
             '</div>'
         );
@@ -179,7 +179,7 @@ jQuery(function($){
     });
     
     // Loading functions
-    function showLoading(message = AIE_AJAX.i18n.processing) {
+    function showLoading(message = ADVAIMG_AJAX.i18n.processing) {
         $loading.find('span').text(message);
         $loading.show();
         $('#aie-preview').addClass('loading');
@@ -195,7 +195,7 @@ jQuery(function($){
         }
     }
 
-    function showButtonLoading(button, message = AIE_AJAX.i18n.saving) {
+    function showButtonLoading(button, message = ADVAIMG_AJAX.i18n.saving) {
         button.addClass('loading').prop('disabled', true).attr('aria-disabled', 'true');
         button.data('original-text', button.text());
         button.text(message);
@@ -237,15 +237,15 @@ jQuery(function($){
 
         // Validate image ID exists
         if (!validateImageID()) {
-            alert(AIE_AJAX.i18n.no_image);
+            alert(ADVAIMG_AJAX.i18n.no_image);
             return;
         }
 
         showLoading();
 
         const data = {
-            action: "aie_preview",
-            _ajax_nonce: AIE_AJAX.nonce,
+            action: "advaimg_preview",
+            _ajax_nonce: ADVAIMG_AJAX.nonce,
             image_id: $imageId.val(),
             contrast: $contrast.val(),
             amount: $amount.val(),
@@ -253,7 +253,7 @@ jQuery(function($){
             threshold: $threshold.val(),
         };
 
-        $.post(AIE_AJAX.ajax_url, data, function(resp){
+        $.post(ADVAIMG_AJAX.ajax_url, data, function(resp){
             if (resp.success) {
                 $preview.attr('src', resp.data.preview);
                 if ($previewToggle.is(':checked')) {
@@ -265,12 +265,12 @@ jQuery(function($){
                 updateSliderPosition();
             } else {
                 console.error('Preview failed:', resp.data);
-                alert(AIE_AJAX.i18n.preview_failed + ': ' + (resp.data || AIE_AJAX.i18n.unknown_error));
+                alert(ADVAIMG_AJAX.i18n.preview_failed + ': ' + (resp.data || ADVAIMG_AJAX.i18n.unknown_error));
             }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.error('AJAX Error:', textStatus, errorThrown);
-            alert(AIE_AJAX.i18n.network_error);
+            alert(ADVAIMG_AJAX.i18n.network_error);
         })
         .always(function() {
             hideLoading();
@@ -314,7 +314,7 @@ jQuery(function($){
     $('#aie-reset').on('click', function(e) {
         e.preventDefault();
 
-        if (!confirm(AIE_AJAX.i18n.reset_confirm)) {
+        if (!confirm(ADVAIMG_AJAX.i18n.reset_confirm)) {
             return;
         }
 
@@ -332,45 +332,45 @@ jQuery(function($){
         }
 
         if (!validateImageID()) {
-            alert(AIE_AJAX.i18n.no_image);
+            alert(ADVAIMG_AJAX.i18n.no_image);
             return;
         }
         
         const previewSrc = $preview.attr('src');
         if (!previewSrc) {
-            alert(AIE_AJAX.i18n.no_image);
+            alert(ADVAIMG_AJAX.i18n.no_image);
             return;
         }
         
-        if (!confirm(AIE_AJAX.i18n.confirm_save)) {
+        if (!confirm(ADVAIMG_AJAX.i18n.confirm_save)) {
             return;
         }
 
         showButtonLoading($('#aie-save'));
 
         const data = {
-            action: "aie_save",
-            _ajax_nonce: AIE_AJAX.nonce,
+            action: "advaimg_save",
+            _ajax_nonce: ADVAIMG_AJAX.nonce,
             image_id: $imageId.val(),
             image_data: previewSrc
         };
         
-        $.post(AIE_AJAX.ajax_url, data, function(resp){
+        $.post(ADVAIMG_AJAX.ajax_url, data, function(resp){
             if (resp.success) {
                 alert(resp.data.message);
 
                 // Optional: Offer to go to the edited image
-                if (resp.data.edit_link && confirm(AIE_AJAX.i18n.view_edited)) {
+                if (resp.data.edit_link && confirm(ADVAIMG_AJAX.i18n.view_edited)) {
                     window.open(resp.data.edit_link, '_blank');
                 }
             } else {
                 console.error('Save failed:', resp.data);
-                alert(AIE_AJAX.i18n.save_failed + ': ' + (resp.data.message || AIE_AJAX.i18n.unknown_error));
+                alert(ADVAIMG_AJAX.i18n.save_failed + ': ' + (resp.data.message || ADVAIMG_AJAX.i18n.unknown_error));
             }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.error('AJAX Error:', textStatus, errorThrown);
-            alert(AIE_AJAX.i18n.network_error);
+            alert(ADVAIMG_AJAX.i18n.network_error);
         })
         .always(function() {
             hideButtonLoading($('#aie-save'));
@@ -389,8 +389,8 @@ jQuery(function($){
         
         // Create new media frame
         frame = wp.media({
-            title: AIE_AJAX.i18n.select_image,
-            button: { text: AIE_AJAX.i18n.use_this_image },
+            title: ADVAIMG_AJAX.i18n.select_image,
+            button: { text: ADVAIMG_AJAX.i18n.use_this_image },
             library: { type: "image" },
             multiple: false
         });
@@ -410,8 +410,8 @@ jQuery(function($){
             $('#aie-save, #aie-reset').prop('disabled', false).attr('aria-disabled', 'false');
 
             // Update status messages
-            $('#save-status').text(AIE_AJAX.i18n.save_status_enabled || 'Ready to save edited image');
-            $('#reset-status').text(AIE_AJAX.i18n.reset_status_enabled || 'Ready to reset filters');
+            $('#save-status').text(ADVAIMG_AJAX.i18n.save_status_enabled || 'Ready to save edited image');
+            $('#reset-status').text(ADVAIMG_AJAX.i18n.reset_status_enabled || 'Ready to reset filters');
 
             // Load original image for comparison
             $originalPreview.attr('src', attachment.url).show();
@@ -445,12 +445,12 @@ jQuery(function($){
         }
 
         const data = {
-            action: "aie_get_original",
-            _ajax_nonce: AIE_AJAX.nonce,
+            action: "advaimg_get_original",
+            _ajax_nonce: ADVAIMG_AJAX.nonce,
             image_id: $imageId.val(),
         };
 
-        $.post(AIE_AJAX.ajax_url, data, function(resp){
+        $.post(ADVAIMG_AJAX.ajax_url, data, function(resp){
             if (resp.success) {
                 $originalPreview.attr('src', resp.data.original_url).show();
                 $compareSlider.val(100);

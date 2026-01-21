@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Advanced Image Editor
- * Plugin URI: https://github.com/rafael-minuesa/advanced-image-editor
+ * Plugin URI: https://wordpress.org/plugins/advanced-image-editor/
  * Description: Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking. Real-time preview, accessibility features, and seamless WordPress integration.
- * Version: 2.4
+ * Version: 2.5
  * Author: Rafael Minuesa
  * Author URI: https://github.com/rafael-minuesa
  * License: GPL v2 or later
@@ -20,15 +20,15 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('AIE_VERSION', '2.4');
-define('AIE_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('AIE_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('AIE_PLUGIN_BASENAME', plugin_basename(__FILE__));
+define('ADVAIMG_VERSION', '2.5');
+define('ADVAIMG_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('ADVAIMG_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ADVAIMG_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 // Include required files
-require_once AIE_PLUGIN_DIR . 'includes/class-advanced-image-editor.php';
-require_once AIE_PLUGIN_DIR . 'includes/class-aie-ajax-handler.php';
-require_once AIE_PLUGIN_DIR . 'includes/aie-functions.php';
+require_once ADVAIMG_PLUGIN_DIR . 'includes/class-advanced-image-editor.php';
+require_once ADVAIMG_PLUGIN_DIR . 'includes/class-advaimg-ajax-handler.php';
+require_once ADVAIMG_PLUGIN_DIR . 'includes/advaimg-functions.php';
 
 // Initialize the plugin
 new Advanced_Image_Editor();

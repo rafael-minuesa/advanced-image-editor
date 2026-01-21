@@ -5,7 +5,7 @@ Tags: image, editor, filter, contrast, sharpen
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.4
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,17 @@ Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be insta
 4. **Media Library Integration** - Seamless workflow with WordPress media library
 
 == Changelog ==
+
+= 2.5 =
+* Fixed plugin URI validation issue
+* Changed prefix from 'aie' to 'advaimg' to meet WordPress.org guidelines (4+ characters)
+* Improved base64 image data sanitization with dedicated validation method
+* Renamed internal files to match new prefix convention
+* Added build script for WordPress.org submission
+
+= 2.4 =
+* Fixed WordPress.org validation errors
+* Improved UI and user experience
 
 = 2.3 =
 * Added preview toggle checkbox to show/hide image preview

@@ -19,7 +19,7 @@ class Advanced_Image_Editor {
     /**
      * Plugin version
      */
-    const VERSION = AIE_VERSION;
+    const VERSION = ADVAIMG_VERSION;
 
     /**
      * Maximum image file size in bytes (10MB)
@@ -54,7 +54,7 @@ class Advanced_Image_Editor {
     /**
      * AJAX handler instance
      *
-     * @var AIE_Ajax_Handler
+     * @var ADVAIMG_Ajax_Handler
      */
     private $ajax_handler;
 
@@ -62,13 +62,13 @@ class Advanced_Image_Editor {
      * Constructor - Initialize hooks and filters
      */
     public function __construct() {
-        $this->ajax_handler = new AIE_Ajax_Handler();
+        $this->ajax_handler = new ADVAIMG_Ajax_Handler();
 
         add_action('admin_menu', [$this, 'add_menu']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_assets']);
 
         // Add plugin action links
-        add_filter('plugin_action_links_' . AIE_PLUGIN_BASENAME, [$this, 'add_plugin_action_links']);
+        add_filter('plugin_action_links_' . ADVAIMG_PLUGIN_BASENAME, [$this, 'add_plugin_action_links']);
     }
 
 
@@ -110,33 +110,33 @@ class Advanced_Image_Editor {
         wp_enqueue_media(); // Enables WP media modal
 
         // Get file modification times for cache busting
-        $css_path = AIE_PLUGIN_DIR . 'assets/css/admin.css';
-        $js_path = AIE_PLUGIN_DIR . 'assets/js/editor.js';
+        $css_path = ADVAIMG_PLUGIN_DIR . 'assets/css/admin.css';
+        $js_path = ADVAIMG_PLUGIN_DIR . 'assets/js/editor.js';
 
         $css_version = file_exists($css_path) ? filemtime($css_path) : self::VERSION;
         $js_version = file_exists($js_path) ? filemtime($js_path) : self::VERSION;
 
         // Enqueue CSS
         wp_enqueue_style(
-            'aie-admin-css',
-            AIE_PLUGIN_URL . 'assets/css/admin.css',
+            'advaimg-admin-css',
+            ADVAIMG_PLUGIN_URL . 'assets/css/admin.css',
             [],
             $css_version
         );
 
         // Enqueue JS
         wp_enqueue_script(
-            'aie-editor-js',
-            AIE_PLUGIN_URL . 'assets/js/editor.js',
+            'advaimg-editor-js',
+            ADVAIMG_PLUGIN_URL . 'assets/js/editor.js',
             ['jquery'],
             $js_version,
             true
         );
 
         // Localize script with translations and AJAX data
-        wp_localize_script('aie-editor-js', 'AIE_AJAX', [
+        wp_localize_script('advaimg-editor-js', 'ADVAIMG_AJAX', [
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce'    => wp_create_nonce('aie_nonce'),
+            'nonce'    => wp_create_nonce('advaimg_nonce'),
             'i18n'     => [
                 'select_image'       => __('Select an Image to Edit', 'advanced-image-editor'),
                 'use_this_image'     => __('Use This Image', 'advanced-image-editor'),
@@ -240,6 +240,6 @@ class Advanced_Image_Editor {
             return;
         }
 
-        include AIE_PLUGIN_DIR . 'editor-page.php';
+        include ADVAIMG_PLUGIN_DIR . 'editor-page.php';
     }
 }
