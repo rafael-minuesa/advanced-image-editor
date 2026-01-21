@@ -126,7 +126,8 @@ jQuery(function($){
         const handlePosition = (sliderValue / 100) * containerWidth;
 
         $sliderHandle.css('left', handlePosition + 'px');
-        $originalPreview.css('clip-path', `inset(0 ${100 - sliderValue}% 0 0)`);
+        // Clip the edited image (on top) to reveal the original (behind)
+        $preview.css('clip-path', `inset(0 ${100 - sliderValue}% 0 0)`);
     }
 
     // Handle image loading for proper slider positioning
