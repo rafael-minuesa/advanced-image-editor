@@ -1,11 +1,11 @@
-=== Advanced Image Editor ===
+=== Advanced Pixel Editor ===
 
 Contributors: rafaelminuesa
 Tags: image, editor, filter, contrast, sharpen
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.5
+Stable tag: 2.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,9 @@ Yes, the plugin requires the **ImageMagick PHP extension (Imagick)** to be insta
 4. **Media Library Integration** - Seamless workflow with WordPress media library
 
 == Changelog ==
+
+= 2.6 =
+* Renamed plugin from "Advanced Image Editor" to "Advanced Pixel Editor" per WordPress.org review feedback
 
 = 2.5 =
 * Fixed plugin URI validation issue

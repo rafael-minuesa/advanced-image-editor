@@ -1,6 +1,6 @@
-# Advanced Image Editor
+# Advanced Pixel Editor
 
-[![Version](https://img.shields.io/badge/Version-2.5-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
+[![Version](https://img.shields.io/badge/Version-2.6-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
 [![WordPress Plugin Version](https://img.shields.io/badge/WordPress-5.6+-blue.svg)](https://wordpress.org/plugins/advanced-image-editor/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4+-purple.svg)](https://php.net/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -10,7 +10,7 @@ A professional WordPress plugin that brings advanced image editing capabilities 
 
 **🚀 Powered by ImageMagick**: This plugin requires the ImageMagick PHP extension for image processing. Imagick is extremely common and should be available on most modern hosting platforms. Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
-> **📦 Current Version: 2.5** | **📅 Released: January 21, 2025** | **⚡ WordPress 5.6+ Required**
+> **📦 Current Version: 2.6** | **📅 Released: January 21, 2025** | **⚡ WordPress 5.6+ Required**
 
 ![Advanced Image Editor Banner](./.wordpress-org/banner-1544x500.png)
 
@@ -153,6 +153,9 @@ npm run build
 ```
 
 ## 📊 Changelog
+
+### [2.6] - 2025-01-21
+- Renamed plugin from "Advanced Image Editor" to "Advanced Pixel Editor" per WordPress.org review feedback
 
 ### [2.5] - 2025-01-21
 - Fixed plugin URI validation issue
