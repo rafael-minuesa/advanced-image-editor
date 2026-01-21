@@ -1,4 +1,5 @@
-# Advanced Image Editor (renamed to "Advanced Pixel Editor" per WordPress.org review feedback and moved to a new repo)
+# Advanced Image Editor 
+## (renamed to "Advanced Pixel Editor" per WordPress.org review feedback and moved to a [new repo](https://github.com/rafael-minuesa/advanced-pixel-editor))
 
 [![Version](https://img.shields.io/badge/Version-2.6-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
 [![WordPress Plugin Version](https://img.shields.io/badge/WordPress-5.6+-blue.svg)](https://wordpress.org/plugins/advanced-image-editor/)
