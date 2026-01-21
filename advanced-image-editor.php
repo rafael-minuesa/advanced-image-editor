@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Advanced Image Editor
- * Plugin URI: https://wordpress.org/plugins/advanced-image-editor/
+ * Plugin URI: https://github.com/rafael-minuesa/advanced-image-editor/
  * Description: Professional image editing tool with advanced filters, contrast adjustment, and unsharp masking. Real-time preview, accessibility features, and seamless WordPress integration.
  * Version: 2.5
  * Author: Rafael Minuesa
