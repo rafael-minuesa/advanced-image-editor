@@ -1,6 +1,6 @@
 # Advanced Image Editor
 
-[![Version](https://img.shields.io/badge/Version-2.2-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
+[![Version](https://img.shields.io/badge/Version-2.5-blue.svg)](https://github.com/rafael-minuesa/advanced-image-editor/releases)
 [![WordPress Plugin Version](https://img.shields.io/badge/WordPress-5.6+-blue.svg)](https://wordpress.org/plugins/advanced-image-editor/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4+-purple.svg)](https://php.net/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -10,7 +10,7 @@ A professional WordPress plugin that brings advanced image editing capabilities 
 
 **🚀 Powered by ImageMagick**: This plugin requires the ImageMagick PHP extension for image processing. Imagick is extremely common and should be available on most modern hosting platforms. Enabling Imagick is a significant upgrade for image handling on WordPress sites, leading to better results from plugins and core features.
 
-> **📦 Current Version: 2.2** | **📅 Released: January 14, 2025** | **⚡ WordPress 5.6+ Required**
+> **📦 Current Version: 2.5** | **📅 Released: January 21, 2025** | **⚡ WordPress 5.6+ Required**
 
 ![Advanced Image Editor Banner](./.wordpress-org/banner-1544x500.png)
 
@@ -154,7 +154,25 @@ npm run build
 
 ## 📊 Changelog
 
-### [2.1] - 2025-01-14
+### [2.5] - 2025-01-21
+- Fixed plugin URI validation issue
+- Changed prefix from 'aie' to 'advaimg' to meet WordPress.org guidelines (4+ characters)
+- Improved base64 image data sanitization with dedicated validation method
+- Renamed internal files to match new prefix convention
+- Added build script for WordPress.org submission
+
+### [2.4] - 2025-01-16
+- Fixed WordPress.org validation errors
+- Improved UI and user experience
+
+### [2.3] - 2025-01-15
+- Added preview toggle checkbox to show/hide image preview
+- Added before/after comparison slider with draggable handle
+- Redesigned layout with preview at top and compact controls sidebar
+- Improved responsive design for mobile devices
+- Enhanced user interface with better space utilization
+
+### [2.2] - 2025-01-14
 - Complete plugin rename from "Advanced Image Filters" to "Advanced Image Editor"
 - Enhanced security with rate limiting, input validation, and capability checks
 - Improved accessibility with ARIA support and keyboard navigation
@@ -163,7 +181,7 @@ npm run build
 - Comprehensive internationalization support
 - WordPress coding standards compliance
 
-### [2.0] - 2025-01-10
+### [2.1] - 2025-01-10
 - Initial release with basic image editing functionality
 
 ## 📄 License
